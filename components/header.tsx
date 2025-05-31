@@ -130,7 +130,7 @@ export default function Header() {
               <div className="text-xs font-mono mr-4 text-right">
                 10-13 July 2025
                 <br />
-                Makassar (In Person)
+                Makassar
               </div>
 
               <Link
