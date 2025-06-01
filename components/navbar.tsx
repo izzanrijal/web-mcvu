@@ -44,7 +44,7 @@ export default function Navbar() {
   ]
 
   return (
-    <header className="bg-white border-b border-gray-light sticky top-0 z-50">
+    <header className="bg-cream border-b border-gray-light sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
@@ -82,7 +82,7 @@ export default function Navbar() {
 
                 {item.dropdown && (
                   <div
-                    className={`absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md overflow-hidden transition-all duration-300 ${activeDropdown === item.label ? "opacity-100 visible" : "opacity-0 invisible"}`}
+                    className={`absolute left-0 mt-2 w-48 bg-cream shadow-lg rounded-md overflow-hidden transition-all duration-300 ${activeDropdown === item.label ? "opacity-100 visible" : "opacity-0 invisible"}`}
                   >
                     <div className="py-2">
                       {item.items?.map((subItem, subIndex) => (
@@ -114,7 +114,7 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu */}
-      <div className={`lg:hidden bg-white ${isMenuOpen ? "block" : "hidden"}`}>
+      <div className={`lg:hidden bg-cream ${isMenuOpen ? "block" : "hidden"}`}>
         <div className="container mx-auto px-4 py-4 space-y-4">
           {navItems.map((item, index) => (
             <div key={index}>

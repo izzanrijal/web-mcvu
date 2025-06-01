@@ -2,12 +2,12 @@ import Image from "next/image"
 
 export default function ChairmanMessage() {
   return (
-    <section className="py-16 md:py-24 bg-cream">
+    <section className="py-16 md:py-24 bg-mocha-dark">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-accent-teal font-mono uppercase text-sm mb-2">Welcome message</h2>
-            <h3 className="text-3xl md:text-4xl font-bold text-mocha-dark">From the Chairman</h3>
+            <h2 className="text-mousse-light font-mono uppercase text-sm mb-2">Welcome message</h2>
+            <h3 className="text-3xl md:text-4xl font-bold text-cream">From the Chairman</h3>
           </div>
 
           <div className="bg-white rounded-lg p-8 md:p-12 shadow-sm border border-mocha-medium/10">
