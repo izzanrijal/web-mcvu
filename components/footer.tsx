@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-accent-teal">MCVU (Makassar Cardiovascular Update) XXIII 2025</h3>
-            <p className="text-sm text-white/80">Emerging Paradigms in Acute Cardiovascular Care</p>
+            <p className="text-sm text-white/80">Emerging Paradigms in Acute Cardiovascular Care: Lifelines in Motion, Excellence in Every Beat</p>
           </div>
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-accent-teal">Tautan</h3>
