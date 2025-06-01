@@ -45,7 +45,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-8 border-t border-white/20 pt-8 text-center text-sm text-white/80">
-          <p>© 2025 MCVU Symposium. Hak Cipta Dilindungi.</p>
+          <p>© MCVU XXIII 2025. All rights reserved.</p>
         </div>
       </div>
     </footer>
