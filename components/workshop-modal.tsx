@@ -25,9 +25,11 @@ interface WorkshopModalProps {
   isOpen: boolean;
   onClose: () => void;
   workshop?: Workshop | null; // Workshop to display directly
+  allWorkshops?: Workshop[]; // Optional: Full list of workshops for list view
+  onSelectWorkshop?: (workshop: Workshop) => void; // Optional: Handler for selecting from list view
 }
 
-export default function WorkshopModal({ isOpen, onClose, workshop: workshopToShow }: WorkshopModalProps) {
+export default function WorkshopModal({ isOpen, onClose, workshop: workshopToShow, allWorkshops, onSelectWorkshop }: WorkshopModalProps) {
 
   // Close modal when Escape key is pressed
   useEffect(() => {
@@ -132,16 +134,33 @@ export default function WorkshopModal({ isOpen, onClose, workshop: workshopToSho
             // Fallback if no workshop is passed - e.g. for "EXPLORE ALL WORKSHOPS" button.
             // This part would need its own data source or the full list passed in.
             // For now, it will be empty or show a message.
-            <div className="text-center text-gray-dark py-10">
-              <p>Select a workshop from the list to see details.</p>
-              <p>(Workshop list view to be implemented if main button is used)</p>
-            </div>
+            // LIST VIEW OF ALL WORKSHOPS
+            allWorkshops && onSelectWorkshop ? (
+              <div className="space-y-4">
+                {allWorkshops.map((ws, index) => (
+                  <div
+                    key={index}
+                    className="p-4 border border-gray-light rounded-md hover:bg-cream cursor-pointer transition-colors"
+                    onClick={() => onSelectWorkshop(ws)}
+                  >
+                    <h4 className="font-semibold text-mocha-dark text-lg mb-1">{ws.fullTitle}</h4>
+                    <p className="text-sm text-accent-teal font-mono uppercase">{ws.shortTitle}</p>
+                    <p className="text-sm text-gray-dark mt-1">{ws.date}</p>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              // Fallback if no workshop is passed AND no list/handler is provided
+              <div className="text-center text-gray-dark py-10">
+                <p>Workshop details are not available at the moment, or no workshop was selected.</p>
+              </div>
+            )
           )}
         </div>
 
         {/* Modal Footer */}
         <div className="p-6 border-t border-gray-light">
-          {workshopToShow ? (
+          {(workshopToShow || (allWorkshops && onSelectWorkshop)) ? (
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
               <div className="text-gray-dark">
                 {/* Workshop fee can be dynamic if added to workshop data */}
@@ -151,12 +170,13 @@ export default function WorkshopModal({ isOpen, onClose, workshop: workshopToSho
                 href="https://mcvu.perkimakassar.com/register"
                 className="bg-accent-teal hover:bg-accent-teal/90 text-white font-medium py-2 px-6 rounded-md transition-colors inline-flex items-center w-full sm:w-auto justify-center"
               >
-                Register for this Workshop
+                {workshopToShow ? 'Register for this Workshop' : 'Register for Workshops'}
                 <ArrowRight className="h-4 w-4 ml-2" />
               </Link>
             </div>
           ) : (
-            <div className="text-center text-gray-dark">Please select a workshop to see details.</div>
+            // Fallback if no workshop is selected and no list view is configured
+            <div className="text-center text-gray-dark">Please select a workshop or explore all workshops to see more options.</div>
           )}
         </div>
       </div>

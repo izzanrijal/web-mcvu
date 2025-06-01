@@ -15,7 +15,8 @@ import FaqAccordion from "@/components/faq-accordion"
 import SponsorsSlider from "@/components/sponsors-slider"
 import HorizontalDivider from "@/components/horizontal-divider"
 import WorkshopModalButton from "@/components/workshop-modal-button"
-import WorkshopModal, { Workshop } from "@/components/workshop-modal" // Added WorkshopModal and Workshop type
+import WorkshopModal, { Workshop } from "@/components/workshop-modal"; // Added WorkshopModal and Workshop type
+import { sessions as allWorkshopData } from "@/components/sessions-slider"; // Import all workshop data
 import AboutMcvu from "@/components/about-mcvu"
 import ChairmanMessage from "@/components/chairman-message"
 import VenueMap from "@/components/venue-map"
@@ -198,6 +199,8 @@ export default function Home() {
         isOpen={isModalOpen} 
         onClose={handleCloseWorkshopModal} 
         workshop={selectedWorkshopForModal} 
+        allWorkshops={allWorkshopData} // Pass all workshops
+        onSelectWorkshop={handleOpenWorkshopModal} // Pass handler to update selected workshop
       />
 
       <Footer />

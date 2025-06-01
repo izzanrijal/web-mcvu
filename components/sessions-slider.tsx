@@ -5,7 +5,7 @@ import Link from "next/link"
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react"
 import type { Workshop } from "./workshop-modal" // Import the Workshop type
 
-const sessions: Workshop[] = [
+export const sessions: Workshop[] = [
   {
     shortTitle: "Workshop IACC X ECHO",
     fullTitle: "Deep Diving In Circulatory System: Advanced Workshop on Invasive and non invasive Monitoring Techniques and Echocardiography bedside for Non-Invasive hemodynamic Monitoring",
