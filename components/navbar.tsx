@@ -50,11 +50,12 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <Image
-              src="/placeholder.svg?height=60&width=180&query=MCVU XXIII 2025 logo medical conference"
-              alt="MCVU XXIII 2025"
-              width={180}
-              height={60}
+              src="/mcvu-logo.png"
+              alt="MCVU XXIII 2025 Logo"
+              width={250}
+              height={50}
               className="h-12 w-auto"
+              priority
             />
           </Link>
 

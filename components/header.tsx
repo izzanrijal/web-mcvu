@@ -32,17 +32,18 @@ export default function Header() {
   return (
     <>
       {/* Desktop Header */}
-      <header className="bg-mocha-dark text-white hidden lg:block sticky top-0 z-50">
+      <header className="bg-cream text-mocha-dark hidden lg:block sticky top-0 z-50 border-b border-gray-light">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
             <div className="flex items-center space-x-8">
               <Link href="/" className="flex-shrink-0">
                 <Image
-                  src="/placeholder-nky7r.png"
-                  alt="MCVU XXIII 2025"
-                  width={160}
-                  height={40}
-                  className="h-10 w-auto"
+                  src="/mcvu-logo.png"
+                  alt="MCVU XXIII 2025 Logo"
+                  width={250} 
+                  height={50}
+                  className="h-16 w-auto"
+                  priority
                 />
               </Link>
               <div className="text-sm font-mono">
@@ -119,11 +120,11 @@ export default function Header() {
       </header>
 
       {/* Mobile Header */}
-      <header className="bg-mocha-dark text-white lg:hidden sticky top-0 z-50">
+      <header className="bg-cream text-mocha-dark lg:hidden sticky top-0 z-50 border-b border-gray-light">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <Link href="/" className="flex-shrink-0">
-              <Image src="/placeholder-nky7r.png" alt="MCVU XXIII 2025" width={128} height={32} className="h-8 w-auto" />
+              <Image src="/mcvu-logo.png" alt="MCVU XXIII 2025 Logo" width={250} height={50} className="h-16 w-auto" priority />
             </Link>
 
             <div className="flex items-center">
@@ -142,7 +143,7 @@ export default function Header() {
                 Register
               </Link>
 
-              <button onClick={toggleMobileMenu} className="text-white focus:outline-none" aria-label="Toggle menu">
+              <button onClick={toggleMobileMenu} className="text-mocha-dark focus:outline-none" aria-label="Toggle menu">
                 {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </button>
             </div>
@@ -151,40 +152,40 @@ export default function Header() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="bg-mocha-dark border-t border-mocha-medium/40">
+          <div className="fixed inset-0 bg-cream text-mocha-dark z-40 transform translate-x-0 transition-transform duration-300 ease-in-out lg:hidden">
             <div className="container mx-auto px-4 py-4">
               <nav className="space-y-4">
-                <Link href="/" onClick={(e) => handleNavLinkClick(e, '/')} className="block py-2 hover:text-accent-teal transition-colors">
+                <Link href="/" onClick={(e) => handleNavLinkClick(e, '/')} className="block py-3 px-4 text-lg hover:bg-mousse-light/30 transition-colors">
                   <span className="flex items-center">
                     <span className="text-accent-teal mr-1">/</span>
                     <span>Home</span>
                   </span>
                 </Link>
-                <Link href="#about-mcvu" onClick={(e) => handleNavLinkClick(e, '#about-mcvu')} className="block py-2 hover:text-accent-teal transition-colors">
+                <Link href="#about-mcvu" onClick={(e) => handleNavLinkClick(e, '#about-mcvu')} className="block py-3 px-4 text-lg hover:bg-mousse-light/30 transition-colors">
                   <span className="flex items-center">
                     <span className="text-accent-teal mr-1">/</span>
                     <span>About</span>
                   </span>
                 </Link>
-                <Link href="#featured-speakers" onClick={(e) => handleNavLinkClick(e, '#featured-speakers')} className="block py-2 hover:text-accent-teal transition-colors">
+                <Link href="#featured-speakers" onClick={(e) => handleNavLinkClick(e, '#featured-speakers')} className="block py-3 px-4 text-lg hover:bg-mousse-light/30 transition-colors">
                   <span className="flex items-center">
                     <span className="text-accent-teal mr-1">/</span>
                     <span>Speakers</span>
                   </span>
                 </Link>
-                <Link href="#sessions-slider" onClick={(e) => handleNavLinkClick(e, '#sessions-slider')} className="block py-2 hover:text-accent-teal transition-colors">
+                <Link href="#sessions-slider" onClick={(e) => handleNavLinkClick(e, '#sessions-slider')} className="block py-3 px-4 text-lg hover:bg-mousse-light/30 transition-colors">
                   <span className="flex items-center">
                     <span className="text-accent-teal mr-1">/</span>
                     <span>Sessions & Workshops</span>
                   </span>
                 </Link>
-                <Link href="#pricing" onClick={(e) => handleNavLinkClick(e, '#pricing')} className="block py-2 hover:text-accent-teal transition-colors">
+                <Link href="#pricing" onClick={(e) => handleNavLinkClick(e, '#pricing')} className="block py-3 px-4 text-lg hover:bg-mousse-light/30 transition-colors">
                   <span className="flex items-center">
                     <span className="text-accent-teal mr-1">/</span>
                     <span>Pricing</span>
                   </span>
                 </Link>
-                <Link href="#faq-accordion" onClick={(e) => handleNavLinkClick(e, '#faq-accordion')} className="block py-2 hover:text-accent-teal transition-colors">
+                <Link href="#faq-accordion" onClick={(e) => handleNavLinkClick(e, '#faq-accordion')} className="block py-3 px-4 text-lg hover:bg-mousse-light/30 transition-colors">
                   <span className="flex items-center">
                     <span className="text-accent-teal mr-1">/</span>
                     <span>FAQ</span>

@@ -39,12 +39,12 @@ export default function Home() {
       <Header />
 
       {/* Hero Section - Redesigned */}
-      <section className="relative bg-mocha-dark overflow-hidden">
-        <div className="absolute inset-0 bg-mocha-dark">
-          <div className="absolute inset-0 opacity-20">
+      <section className="relative bg-cream overflow-hidden">
+        <div className="absolute inset-0 bg-cream">
+          <div className="absolute inset-0 opacity-60">
             <Image
-              src="/abstract-medical-pattern.png"
-              alt="Background Pattern"
+              src="/hero-background-new.png"
+              alt="MCVU XXIII 2025"
               fill
               className="object-cover"
               priority
@@ -53,7 +53,7 @@ export default function Home() {
         </div>
         <div className="container mx-auto px-4 relative z-10 py-20 md:py-32">
           <div className="max-w-5xl mx-auto text-center">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white font-mono leading-tight mb-6">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-mocha-dark font-mono leading-tight mb-6">
               MCVU XXIII
               <br />
               <span className="text-accent-teal">2025</span>
@@ -62,15 +62,15 @@ export default function Home() {
             <div className="space-y-4 mb-10">
               <div className="flex items-center justify-center">
                 <Calendar className="h-5 w-5 text-accent-teal mr-3" />
-                <p className="text-lg md:text-xl text-white">July 10-13, 2025</p>
+                <p className="text-lg md:text-xl text-mocha-dark">July 10-13, 2025</p>
               </div>
               <div className="flex items-center justify-center">
                 <MapPin className="h-5 w-5 text-accent-teal mr-3" />
-                <p className="text-lg md:text-xl text-white">Claro Hotel, Makassar</p>
+                <p className="text-lg md:text-xl text-mocha-dark">Claro Hotel, Makassar</p>
               </div>
               <div className="flex items-center justify-center">
                 <Clock className="h-5 w-5 text-accent-teal mr-3" />
-                <p className="text-lg md:text-xl text-white">In-Person</p>
+                <p className="text-lg md:text-xl text-mocha-dark">In-Person</p>
               </div>
             </div>
 
@@ -83,7 +83,7 @@ export default function Home() {
               </Link>
               <Link
                 href="/agenda"
-                className="inline-block bg-transparent border-2 border-white hover:border-accent-teal text-white hover:text-accent-teal font-mono uppercase text-base md:text-lg font-bold py-3 px-6 rounded-md transition-colors text-center"
+                className="inline-block bg-transparent hover:bg-mocha-dark hover:text-cream text-mocha-dark font-mono uppercase text-base md:text-lg font-bold py-3 px-6 rounded-md border-2 border-mocha-dark transition-colors text-center"
               >
                 Abstract Submission
               </Link>
