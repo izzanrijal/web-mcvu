@@ -41,7 +41,7 @@ export default function Home() {
       {/* Hero Section - Redesigned */}
       <section className="relative bg-cream overflow-hidden">
         <div className="absolute inset-0 bg-cream">
-          <div className="absolute inset-0 opacity-60">
+          <div className="absolute inset-0 opacity-[.45]">
             <Image
               src="/hero-background-new.png"
               alt="MCVU XXIII 2025"
