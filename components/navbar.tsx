@@ -116,6 +116,11 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <div className={`lg:hidden bg-cream ${isMenuOpen ? "block" : "hidden"}`}>
         <div className="container mx-auto px-4 py-4 space-y-4">
+          <div className="text-right pb-2">
+            <button onClick={toggleMenu} aria-label="Close menu" className="text-mocha-dark">
+              <X className="h-6 w-6" />
+            </button>
+          </div>
           {navItems.map((item, index) => (
             <div key={index}>
               {item.dropdown ? (
