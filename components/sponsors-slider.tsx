@@ -3,19 +3,28 @@
 import { useEffect, useRef } from "react"
 import Image from "next/image"
 
+// Using exactly 8 sponsor logos as requested
 const sponsors = [
-  "/medical-company-logo-1.png",
-  "/pharmaceutical-company-logo-2.png",
+  "/sponsor-1.png", // These will be created as placeholder images
+  "/sponsor-2.png",
+  "/sponsor-3.png",
+  "/sponsor-4.png",
+  "/sponsor-5.png",
+  "/sponsor-6.png",
+  "/sponsor-7.png",
+  "/sponsor-8.png",
+]
+
+// Fallback images if the sponsor images don't exist yet
+const fallbackImages = [
+  "/placeholder-logo.svg",
   "/placeholder-5s4li.png",
-  "/placeholder.svg?height=100&width=200&query=medical device company logo 4",
-  "/placeholder.svg?height=100&width=200&query=hospital group logo 5",
-  "/placeholder.svg?height=100&width=200&query=medical insurance company logo 6",
-  "/placeholder.svg?height=100&width=200&query=medical education institution logo 7",
-  "/placeholder.svg?height=100&width=200&query=health ministry logo 8",
-  "/placeholder.svg?height=100&width=200&query=medical research institute logo 9",
-  "/placeholder.svg?height=100&width=200&query=medical association logo 10",
-  "/placeholder.svg?height=100&width=200&query=medical journal logo 11",
-  "/placeholder.svg?height=100&width=200&query=healthcare startup logo 12",
+  "/placeholder-3kpdf.png",
+  "/placeholder-nky7r.png",
+  "/placeholder-pyxzt.png",
+  "/placeholder-ukopt.png",
+  "/placeholder-wk1sg.png",
+  "/placeholder-logo.png",
 ]
 
 export default function SponsorsSlider() {
@@ -65,11 +74,11 @@ export default function SponsorsSlider() {
           <div key={index} className="flex-shrink-0 px-6 py-4" style={{ width: "16.666%" }}>
             <div className="flex justify-center items-center h-20">
               <Image
-                src={sponsor || "/placeholder.svg"}
+                src={sponsor || fallbackImages[index % fallbackImages.length]}
                 alt={`Sponsor ${(index % sponsors.length) + 1}`}
                 width={160}
                 height={80}
-                className="max-h-16 w-auto grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                className="h-16 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
               />
             </div>
           </div>
