@@ -58,6 +58,9 @@ export default function Home() {
               <br />
               <span className="text-accent-teal">2025</span>
             </h1>
+            <p className="text-lg md:text-xl text-mocha-dark font-mono mb-6 text-center"><strong>
+              Emerging Paradigms in Acute Cardiovascular Care:<br></br>Lifelines in Motion, Excellence in Every Beat
+            </strong></p>
 
             <div className="space-y-4 mb-10">
               <div className="flex items-center justify-center">
