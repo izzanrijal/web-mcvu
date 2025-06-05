@@ -16,8 +16,8 @@ export default function WhyAttendSection() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Card 1: Specialized Clinical Updates */}
               <div className="bg-white rounded-md overflow-hidden shadow-sm">
-                <div className="relative h-48">
-                  <Image src="/specialized-medical-training.png" alt="Specialized Clinical Updates" fill className="object-cover" />
+                <div className="relative h-56">
+                  <Image src="/why-attend-1.png" alt="Specialized Clinical Updates" fill className="object-cover" />
                 </div>
                 <div className="p-6">
                   <h4 className="text-accent-teal text-sm font-mono uppercase">ADVANCE YOUR EXPERTISE</h4>
@@ -30,8 +30,8 @@ export default function WhyAttendSection() {
 
               {/* Card 2: Practical Skills & Collaboration */}
               <div className="bg-white rounded-md overflow-hidden shadow-sm">
-                <div className="relative h-48">
-                  <Image src="/medical-collaboration-workshop.png" alt="Practical Skills & Collaboration" fill className="object-cover" />
+                <div className="relative h-56">
+                  <Image src="/why-attend-2.png" alt="Practical Skills & Collaboration" fill className="object-cover" />
                 </div>
                 <div className="p-6">
                   <h4 className="text-accent-teal text-sm font-mono uppercase">ENHANCE YOUR PRACTICE</h4>
@@ -44,8 +44,8 @@ export default function WhyAttendSection() {
 
               {/* Card 3: Discover Makassar */}
               <div className="bg-white rounded-md overflow-hidden shadow-sm">
-                <div className="relative h-48">
-                  <Image src="/makassar-fort-rotterdam.png" alt="Discover Makassar" fill className="object-cover" />
+                <div className="relative h-56">
+                  <Image src="/why-attend-3.png" alt="Discover Makassar" fill className="object-cover" />
                 </div>
                 <div className="p-6">
                   <h4 className="text-accent-teal text-sm font-mono uppercase">EXPLORE</h4>
