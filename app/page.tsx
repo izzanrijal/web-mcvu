@@ -24,6 +24,7 @@ import VenueMap from "@/components/venue-map"
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedWorkshopForModal, setSelectedWorkshopForModal] = useState<Workshop | null>(null);
+  const [isSubmissionModalOpen, setIsSubmissionModalOpen] = useState(false);
 
   const handleOpenWorkshopModal = (workshop: Workshop | null) => {
     setSelectedWorkshopForModal(workshop);
@@ -84,12 +85,13 @@ export default function Home() {
               >
                 Register Now
               </Link>
-              <Link
-                href="/agenda"
+              <button
+                type="button"
+                onClick={() => setIsSubmissionModalOpen(true)}
                 className="inline-block bg-transparent hover:bg-mocha-dark hover:text-cream text-mocha-dark font-mono uppercase text-base md:text-lg font-bold py-3 px-6 rounded-md border-2 border-mocha-dark transition-colors text-center"
               >
                 Abstract Submission
-              </Link>
+              </button>
             </div>
           </div>
         </div>
@@ -205,7 +207,15 @@ export default function Home() {
         allWorkshops={allWorkshopData} // Pass all workshops
         onSelectWorkshop={handleOpenWorkshopModal} // Pass handler to update selected workshop
       />
-
+      {isSubmissionModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+          <div className="bg-white rounded-lg shadow-xl p-6 max-w-sm mx-auto text-center">
+            <h3 className="text-xl font-bold mb-4">Submissions Closed</h3>
+            <p className="mb-6">Abstract submissions are now closed. Please join us next year!</p>
+            <button type="button" onClick={() => setIsSubmissionModalOpen(false)} className="bg-accent-teal text-white py-2 px-4 rounded-md">Close</button>
+          </div>
+        </div>
+      )}
       <Footer />
     </div>
   )
