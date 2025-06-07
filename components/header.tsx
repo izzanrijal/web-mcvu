@@ -123,12 +123,21 @@ export default function Header() {
       <header className="bg-cream text-black lg:hidden sticky top-0 z-50 border-b border-gray-light">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex-shrink-0">
-              <Image src="/mcvu-logo.png" alt="MCVU XXIII 2025 Logo" width={250} height={50} className="h-16 w-auto" priority />
-            </Link>
-
             <div className="flex items-center">
-              <div className="text-xs font-mono font-bold mr-4 text-right">
+              <Link href="/" className="flex-shrink-0">
+                <Image 
+                  src="/mcvu-logo.png" 
+                  alt="MCVU XXIII 2025 Logo" 
+                  width={200} 
+                  height={40} 
+                  className="h-12 w-auto" 
+                  priority 
+                />
+              </Link>
+            </div>
+
+            <div className="flex items-center space-x-3">
+              <div className="text-xs font-mono font-bold text-right">
                 10-13 July 2025
                 <br />
                 Makassar
@@ -138,7 +147,7 @@ export default function Header() {
                 href="https://mcvu.perkimakassar.com/register"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-accent-teal hover:bg-accent-teal/90 text-white py-1.5 px-3 rounded-md transition-colors text-sm mr-2"
+                className="bg-accent-teal hover:bg-accent-teal/90 text-white py-1.5 px-3 rounded-md transition-colors text-sm"
               >
                 Register
               </Link>

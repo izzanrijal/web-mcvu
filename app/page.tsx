@@ -134,23 +134,9 @@ export default function Home() {
       {/* Chairman's Welcome Message */}
       <ChairmanMessage />
 
-      {/* Featured Speakers */}
-      <section id="featured-speakers" className="py-16 md:py-24 bg-cream">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <div className="lg:col-span-3 space-y-4">
-              <h2 className="text-3xl md:text-4xl font-bold text-mocha-dark">Featured speakers</h2>
-              <p className="text-gray-dark">
-                MCVU XXIII 2025 speakers include leading experts, researchers and medical professionals — from across
-                Indonesia and the global healthcare community, and many more.
-              </p>
-
-            </div>
-            <div className="lg:col-span-9">
-              <SpeakerGrid />
-            </div>
-          </div>
-        </div>
+      {/* Featured Speakers - Hidden for now */}
+      <section id="featured-speakers" className="hidden">
+        {/* Content hidden */}
       </section>
 
 
