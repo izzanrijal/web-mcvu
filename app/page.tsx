@@ -89,9 +89,9 @@ export default function Home() {
                 </div>
               </div>
             </h1>
-            <p className="text-lg md:text-xl text-mocha-dark font-mono mb-6 text-center"><strong>
+            <p className="text-lg md:text-xl text-black font-sans font-bold mb-6 text-center">
               Emerging Paradigms in Acute Cardiovascular Care:<br></br>Lifelines in Motion, Excellence in Every Beat
-            </strong></p>
+            </p>
 
             <div className="mb-6 flex justify-center">
               <div className="relative w-full max-w-xl h-auto">
