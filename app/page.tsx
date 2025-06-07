@@ -53,8 +53,9 @@ export default function Home() {
           </div>
         </div>
         {/* Affiliates logo - centered at top */}
-        <div className="absolute top-4 left-0 right-0 flex justify-center z-20">
-          <div className="relative" style={{ width: '80%', maxWidth: '640px', height: '64px' }}>
+        {/* Affiliates logo - responsive */}
+        <div className="absolute top-6 sm:top-8 left-0 right-0 flex justify-center z-20">
+          <div className="relative w-[76.5%] sm:w-[72.25%] md:w-[68%] max-w-[544px] h-10 sm:h-14 md:h-17">
             <Image 
               src="/affiliates.png" 
               alt="MCVU Affiliates" 
@@ -65,12 +66,13 @@ export default function Home() {
             />
           </div>
         </div>
-        <div className="container mx-auto px-4 relative z-10 pt-16 pb-10 md:pt-20 md:pb-12 lg:pt-24 lg:pb-16">
+        
+        <div className="container mx-auto px-4 relative z-10 pt-16 pb-8 sm:pt-20 sm:pb-10 md:pt-24 md:pb-12">
           <div className="max-w-5xl mx-auto text-center">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-mocha-dark font-mono leading-tight mb-6">
-              <div className="relative w-full max-w-2xl h-32 mx-auto">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-mocha-dark font-mono leading-tight mb-4 sm:mb-6">
+              <div className="relative w-full max-w-2xl h-24 sm:h-28 md:h-32 mx-auto my-2 sm:my-3 md:my-4">
                 <div className="relative w-full h-full flex items-center justify-center">
-                  <div className="relative" style={{ width: '120%', height: '120%' }}>
+                  <div className="relative w-[110%] sm:w-[115%] md:w-[120%] h-[110%] sm:h-[115%] md:h-[120%] p-1 sm:p-1.5 md:p-2">
                     <Image 
                       src="/Logo Mcvu.png" 
                       alt="MCVU XXIII 2025" 
@@ -89,7 +91,7 @@ export default function Home() {
                 </div>
               </div>
             </h1>
-            <p className="text-lg md:text-xl text-black font-sans font-bold mb-6 text-center">
+            <p className="text-base sm:text-lg md:text-xl text-black font-sans font-bold mb-4 sm:mb-6 text-center px-2 sm:px-4">
               Emerging Paradigms in Acute Cardiovascular Care:<br></br>Lifelines in Motion, Excellence in Every Beat
             </p>
 
@@ -98,9 +100,9 @@ export default function Home() {
                 <Image 
                   src="/waktu tempat.png" 
                   alt="Waktu dan Tempat" 
-                  width={520}
-                  height={195}
-                  className="mx-auto"
+                  width={480}
+                  height={180}
+                  className="mx-auto w-[90%] max-w-[480px] h-auto"
                   priority
                 />
               </div>
