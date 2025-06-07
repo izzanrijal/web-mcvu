@@ -16,8 +16,8 @@ export default function ChairmanMessage() {
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12 relative z-10">
-            <h2 className="text-black font-sans font-bold text-sm mb-2">Welcome message</h2>
-            <h3 className="text-3xl md:text-4xl font-bold text-black">From the Chairman</h3>
+            <h2 className="text-mocha-dark/80 font-mono uppercase text-sm mb-2">Welcome message</h2>
+            <h3 className="text-3xl md:text-4xl font-bold text-mocha-dark">From the Chairman</h3>
           </div>
 
           <div className="bg-white/95 rounded-lg p-8 md:p-12 shadow-sm border border-mocha-medium/10 relative z-10">

@@ -13,14 +13,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://perkimakassar.com'),
+  metadataBase: new URL('https://mcvu-symposium.vercel.app'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: 'MCVU XXIII 2025 | Makassar Cardiovascular Update',
     description: 'Simposium kardiovaskular terkemuka di Indonesia yang menampilkan workshop, pembicara ahli, dan kesempatan networking untuk profesional kesehatan.',
-    url: 'https://perkimakassar.com',
+    url: 'https://mcvu-symposium.vercel.app',
     siteName: 'MCVU Symposium',
     images: [
       {

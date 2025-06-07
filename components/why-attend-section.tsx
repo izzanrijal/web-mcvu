@@ -7,9 +7,8 @@ export default function WhyAttendSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           <div className="lg:col-span-3 space-y-4">
             <h2 className="text-3xl md:text-4xl font-bold text-mocha-dark">Why attend</h2>
-            <p className="text-gray-dark">
-              Join thousands of medical professionals, researchers, and educators to explore the latest advances in
-              medical science and healthcare
+            <p className="text-gray-dark" data-component-name="WhyAttendSection">
+              Join cardiologists, specialists, medical practitioners, and researchers from across Indonesia as we explore emerging paradigms in acute cardiovascular care at MCVU XXIII 2025
             </p>
           </div>
           <div className="lg:col-span-9">
