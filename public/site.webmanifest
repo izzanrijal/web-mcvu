@@ -1,0 +1,22 @@
+{
+  "name": "MCVU XXIII 2025 | Makassar Cardiovascular Update Symposium",
+  "short_name": "MCVU 2025",
+  "description": "Simposium tahunan untuk membahas perkembangan terbaru dalam perawatan kardiovaskular, penelitian, dan praktik klinis di Indonesia.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F9F5EB",
+  "theme_color": "#1E6F5C",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/mcvu-logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "lang": "id-ID"
+}
