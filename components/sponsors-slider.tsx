@@ -1,18 +1,18 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 
-// Using exactly 8 sponsor logos as requested
+// Sponsor logos (using available sponsor images)
 const sponsors = [
-  "/sponsor-1.png", // These will be created as placeholder images
-  "/sponsor-2.png",
-  "/sponsor-3.png",
-  "/sponsor-4.png",
-  "/sponsor-5.png",
-  "/sponsor-6.png",
-  "/sponsor-7.png",
-  "/sponsor-8.png",
+  "/sponsors/sponsor-1.png",
+  "/sponsors/sponsor-2.png",
+  "/sponsors/sponsor-3.png",
+  "/sponsors/sponsor-4.png",
+  "/sponsors/sponsor-5.png",
+  "/sponsors/sponsor-6.png",
+  "/sponsors/sponsor-7.png",
+  "/sponsors/sponsor-8.png"
 ]
 
 // Fallback images if the sponsor images don't exist yet
@@ -25,60 +25,78 @@ const fallbackImages = [
   "/placeholder-ukopt.png",
   "/placeholder-wk1sg.png",
   "/placeholder-logo.png",
+  "/placeholder-5s4li.png"
 ]
 
 export default function SponsorsSlider() {
   const sliderRef = useRef<HTMLDivElement>(null)
-
+  const itemsPerView = 4.5
+  const animationDuration = 30 // seconds for a complete cycle
+  const sponsorsCount = sponsors.length
+  
+  // Calculate item width based on items per view
+  const itemWidth = 100 / itemsPerView
+  
+  // Create a continuous loop by duplicating the sponsors array
+  // We need at least 2 complete sets for the continuous effect
+  const visibleSponsors = [...sponsors, ...sponsors]
+  
+  // Set up the continuous animation
   useEffect(() => {
-    const slider = sliderRef.current
-    if (!slider) return
-
-    let animationId: number
-    let position = 0
-    const speed = 0.05 // Changed from 0.5 to 0.05 for slower movement
-
-    const animate = () => {
-      position -= speed
-
-      // Reset position when first set of logos is out of view
-      if (position <= -50) {
-        position = 0
+    // Calculate the width of one complete set of sponsors as a percentage
+    const fullSetWidth = sponsorsCount * itemWidth
+    
+    // Create the keyframes for the animation
+    const keyframes = `
+      @keyframes continuousSlide {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-${fullSetWidth}%); }
       }
-
-      if (slider) {
-        slider.style.transform = `translateX(${position}%)`
-      }
-
-      animationId = requestAnimationFrame(animate)
+    `
+    
+    // Create and append the style element
+    const styleElement = document.createElement('style')
+    styleElement.appendChild(document.createTextNode(keyframes))
+    document.head.appendChild(styleElement)
+    
+    // Apply the animation to the slider
+    if (sliderRef.current) {
+      sliderRef.current.style.animation = `continuousSlide ${animationDuration}s linear infinite`
     }
-
-    animationId = requestAnimationFrame(animate)
-
+    
+    // Clean up
     return () => {
-      cancelAnimationFrame(animationId)
+      document.head.removeChild(styleElement)
     }
-  }, [])
-
-  // Double the sponsors array to create a seamless loop
-  const duplicatedSponsors = [...sponsors, ...sponsors]
-
+  }, [sponsorsCount, itemWidth, animationDuration])
+  
   return (
-    <div className="overflow-hidden">
-      <div
+    <div className="overflow-hidden relative">
+      <div 
         ref={sliderRef}
         className="flex items-center"
-        style={{ width: `${duplicatedSponsors.length * 16.666}%` }} // Each logo takes ~16.666% of container width
+        style={{
+          width: `${2 * sponsorsCount * itemWidth}%` // Width for two complete sets
+        }}
       >
-        {duplicatedSponsors.map((sponsor, index) => (
-          <div key={index} className="flex-shrink-0 px-6 py-4" style={{ width: "16.666%" }}>
-            <div className="flex justify-center items-center h-20">
+        {visibleSponsors.map((sponsor, index) => (
+          <div 
+            key={index} 
+            className="flex-shrink-0 px-4 py-4"
+            style={{ width: `${itemWidth}%` }}
+          >
+            <div className="flex justify-center items-center h-24">
               <Image
-                src={sponsor || fallbackImages[index % fallbackImages.length]}
-                alt={`Sponsor ${(index % sponsors.length) + 1}`}
-                width={160}
-                height={80}
-                className="h-16 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                src={sponsor}
+                alt={`Sponsor ${(index % sponsorsCount) + 1}`}
+                width={192}
+                height={96}
+                className="h-20 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300 scale-105"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.onerror = null;
+                  target.src = fallbackImages[index % fallbackImages.length];
+                }}
               />
             </div>
           </div>

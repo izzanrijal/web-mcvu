@@ -52,29 +52,57 @@ export default function Home() {
             />
           </div>
         </div>
+        {/* Affiliates logo - centered at top */}
+        <div className="absolute top-4 left-0 right-0 flex justify-center z-20">
+          <div className="relative" style={{ width: '80%', maxWidth: '640px', height: '64px' }}>
+            <Image 
+              src="/affiliates.png" 
+              alt="MCVU Affiliates" 
+              fill
+              className="object-contain mx-auto"
+              style={{ objectFit: 'contain' }}
+              priority
+            />
+          </div>
+        </div>
         <div className="container mx-auto px-4 relative z-10 py-20 md:py-32">
           <div className="max-w-5xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-mocha-dark font-mono leading-tight mb-6">
-              MCVU XXIII
-              <br />
-              <span className="text-accent-teal">2025</span>
+              <div className="relative w-full max-w-2xl h-32 mx-auto">
+                <div className="relative w-full h-full flex items-center justify-center">
+                  <div className="relative" style={{ width: '120%', height: '120%' }}>
+                    <Image 
+                      src="/Logo Mcvu.png" 
+                      alt="MCVU XXIII 2025" 
+                      fill
+                      className="object-contain"
+                      onError={(e) => {
+                        // If image fails to load, show text fallback
+                        const container = e.currentTarget.parentElement?.parentElement;
+                        if (container) {
+                          container.innerHTML = 'MCVU XXIII<br><span class="text-accent-teal">2025</span>';
+                          container.className = 'text-center';
+                        }
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
             </h1>
             <p className="text-lg md:text-xl text-mocha-dark font-mono mb-6 text-center"><strong>
               Emerging Paradigms in Acute Cardiovascular Care:<br></br>Lifelines in Motion, Excellence in Every Beat
             </strong></p>
 
-            <div className="space-y-4 mb-10">
-              <div className="flex items-center justify-center">
-                <Calendar className="h-5 w-5 text-accent-teal mr-3" />
-                <p className="text-lg md:text-xl text-mocha-dark">July 10-13, 2025</p>
-              </div>
-              <div className="flex items-center justify-center">
-                <MapPin className="h-5 w-5 text-accent-teal mr-3" />
-                <p className="text-lg md:text-xl text-mocha-dark">Claro Hotel, Makassar</p>
-              </div>
-              <div className="flex items-center justify-center">
-                <Clock className="h-5 w-5 text-accent-teal mr-3" />
-                <p className="text-lg md:text-xl text-mocha-dark">In-Person</p>
+            <div className="mb-6 flex justify-center">
+              <div className="relative w-full max-w-xl h-auto">
+                <Image 
+                  src="/waktu tempat.png" 
+                  alt="Waktu dan Tempat" 
+                  width={520}
+                  height={195}
+                  className="mx-auto"
+                  priority
+                />
               </div>
             </div>
 
@@ -133,8 +161,7 @@ export default function Home() {
           <div className="max-w-3xl mx-auto text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Workshops</h2>
             <p className="text-white/80 text-lg">
-              50+ workshops — from clinical skills to research methodology, medical technology to patient care. Here are
-              some key highlights.
+              Explore a comprehensive range of workshops covering the latest advancements in cardiovascular care, research methodologies, and clinical practices. Here are some key highlights from our program.
             </p>
           </div>
           <SessionsSlider onOpenWorkshopDetail={handleOpenWorkshopModal} />

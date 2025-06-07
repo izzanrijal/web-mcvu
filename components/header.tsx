@@ -32,7 +32,7 @@ export default function Header() {
   return (
     <>
       {/* Desktop Header */}
-      <header className="bg-cream text-mocha-dark hidden lg:block sticky top-0 z-50 border-b border-gray-light">
+      <header className="bg-cream text-black hidden lg:block sticky top-0 z-50 border-b border-gray-light">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
             <div className="flex items-center space-x-8">
@@ -46,7 +46,7 @@ export default function Header() {
                   priority
                 />
               </Link>
-              <div className="text-sm font-mono">
+              <div className="text-sm font-mono font-bold">
                 10-13 July 2025
                 <br />
                 Makassar
@@ -58,7 +58,7 @@ export default function Header() {
                 <ul className="flex space-x-6">
                   <li>
                     <Link href="/" onClick={(e) => handleNavLinkClick(e, '/')} className="flex items-center hover:text-accent-teal transition-colors">
-                      <span className="flex items-center">
+                      <span className="flex items-center font-bold">
                         <span className="text-accent-teal mr-1">/</span>
                         <span>Home</span>
                       </span>
@@ -66,7 +66,7 @@ export default function Header() {
                   </li>
                   <li>
                     <Link href="#about-mcvu" onClick={(e) => handleNavLinkClick(e, '#about-mcvu')} className="flex items-center hover:text-accent-teal transition-colors">
-                      <span className="flex items-center">
+                      <span className="flex items-center font-bold">
                         <span className="text-accent-teal mr-1">/</span>
                         <span>About</span>
                       </span>
@@ -74,7 +74,7 @@ export default function Header() {
                   </li>
                   <li>
                     <Link href="#featured-speakers" onClick={(e) => handleNavLinkClick(e, '#featured-speakers')} className="flex items-center hover:text-accent-teal transition-colors">
-                      <span className="flex items-center">
+                      <span className="flex items-center font-bold">
                         <span className="text-accent-teal mr-1">/</span>
                         <span>Speakers</span>
                       </span>
@@ -82,7 +82,7 @@ export default function Header() {
                   </li>
                   <li>
                     <Link href="#sessions-slider" onClick={(e) => handleNavLinkClick(e, '#sessions-slider')} className="flex items-center hover:text-accent-teal transition-colors">
-                      <span className="flex items-center">
+                      <span className="flex items-center font-bold">
                         <span className="text-accent-teal mr-1">/</span>
                         <span>Sessions & Workshops</span>
                       </span>
@@ -90,7 +90,7 @@ export default function Header() {
                   </li>
                   <li>
                     <Link href="#pricing" onClick={(e) => handleNavLinkClick(e, '#pricing')} className="flex items-center hover:text-accent-teal transition-colors">
-                      <span className="flex items-center">
+                      <span className="flex items-center font-bold">
                         <span className="text-accent-teal mr-1">/</span>
                         <span>Pricing</span>
                       </span>
@@ -98,7 +98,7 @@ export default function Header() {
                   </li>
                   <li>
                     <Link href="#faq-accordion" onClick={(e) => handleNavLinkClick(e, '#faq-accordion')} className="flex items-center hover:text-accent-teal transition-colors">
-                      <span className="flex items-center">
+                      <span className="flex items-center font-bold">
                         <span className="text-accent-teal mr-1">/</span>
                         <span>FAQ</span>
                       </span>
@@ -120,7 +120,7 @@ export default function Header() {
       </header>
 
       {/* Mobile Header */}
-      <header className="bg-cream text-mocha-dark lg:hidden sticky top-0 z-50 border-b border-gray-light">
+      <header className="bg-cream text-black lg:hidden sticky top-0 z-50 border-b border-gray-light">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <Link href="/" className="flex-shrink-0">
@@ -128,7 +128,7 @@ export default function Header() {
             </Link>
 
             <div className="flex items-center">
-              <div className="text-xs font-mono mr-4 text-right">
+              <div className="text-xs font-mono font-bold mr-4 text-right">
                 10-13 July 2025
                 <br />
                 Makassar
@@ -154,39 +154,49 @@ export default function Header() {
         {mobileMenuOpen && (
           <div className="fixed inset-0 bg-cream text-mocha-dark z-40 transform translate-x-0 transition-transform duration-300 ease-in-out lg:hidden">
             <div className="container mx-auto px-4 py-4">
+              <div className="flex justify-between items-center mb-6">
+                <div className="w-10"></div> {/* Spacer for alignment */}
+                <button 
+                  onClick={toggleMobileMenu} 
+                  className="text-mocha-dark hover:text-accent-teal transition-colors p-2 -mr-2"
+                  aria-label="Close menu"
+                >
+                  <X className="h-8 w-8" />
+                </button>
+              </div>
               <nav className="space-y-4">
                 <Link href="/" onClick={(e) => handleNavLinkClick(e, '/')} className="block py-3 px-4 text-lg hover:bg-mousse-light/30 transition-colors">
-                  <span className="flex items-center">
+                  <span className="flex items-center font-bold">
                     <span className="text-accent-teal mr-1">/</span>
                     <span>Home</span>
                   </span>
                 </Link>
                 <Link href="#about-mcvu" onClick={(e) => handleNavLinkClick(e, '#about-mcvu')} className="block py-3 px-4 text-lg hover:bg-mousse-light/30 transition-colors">
-                  <span className="flex items-center">
+                  <span className="flex items-center font-bold">
                     <span className="text-accent-teal mr-1">/</span>
                     <span>About</span>
                   </span>
                 </Link>
                 <Link href="#featured-speakers" onClick={(e) => handleNavLinkClick(e, '#featured-speakers')} className="block py-3 px-4 text-lg hover:bg-mousse-light/30 transition-colors">
-                  <span className="flex items-center">
+                  <span className="flex items-center font-bold">
                     <span className="text-accent-teal mr-1">/</span>
                     <span>Speakers</span>
                   </span>
                 </Link>
                 <Link href="#sessions-slider" onClick={(e) => handleNavLinkClick(e, '#sessions-slider')} className="block py-3 px-4 text-lg hover:bg-mousse-light/30 transition-colors">
-                  <span className="flex items-center">
+                  <span className="flex items-center font-bold">
                     <span className="text-accent-teal mr-1">/</span>
                     <span>Sessions & Workshops</span>
                   </span>
                 </Link>
                 <Link href="#pricing" onClick={(e) => handleNavLinkClick(e, '#pricing')} className="block py-3 px-4 text-lg hover:bg-mousse-light/30 transition-colors">
-                  <span className="flex items-center">
+                  <span className="flex items-center font-bold">
                     <span className="text-accent-teal mr-1">/</span>
                     <span>Pricing</span>
                   </span>
                 </Link>
                 <Link href="#faq-accordion" onClick={(e) => handleNavLinkClick(e, '#faq-accordion')} className="block py-3 px-4 text-lg hover:bg-mousse-light/30 transition-colors">
-                  <span className="flex items-center">
+                  <span className="flex items-center font-bold">
                     <span className="text-accent-teal mr-1">/</span>
                     <span>FAQ</span>
                   </span>

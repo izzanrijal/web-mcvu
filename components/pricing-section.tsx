@@ -14,7 +14,7 @@ export default function PricingSection({ id }: PricingSectionProps) {
             <h2 className="text-3xl md:text-4xl font-bold">Pricing</h2>
             <p className="text-white/80">Special rates available for students, residents, and group registrations</p>
             <Link
-              href="/pricing"
+              href="https://mcvu.perkimakassar.com/register"
               className="inline-flex items-center text-accent-teal font-mono uppercase font-bold hover:underline"
             >
               See All Packages
