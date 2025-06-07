@@ -65,7 +65,7 @@ export default function Home() {
             />
           </div>
         </div>
-        <div className="container mx-auto px-4 relative z-10 py-20 md:py-32">
+        <div className="container mx-auto px-4 relative z-10 pt-16 pb-10 md:pt-20 md:pb-12 lg:pt-24 lg:pb-16">
           <div className="max-w-5xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-mocha-dark font-mono leading-tight mb-6">
               <div className="relative w-full max-w-2xl h-32 mx-auto">
