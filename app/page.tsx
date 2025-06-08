@@ -128,7 +128,7 @@ export default function Home() {
       </section>
 
       {/* Countdown Timer */}
-      <CountdownTimer targetDate="2025-07-10T09:00:00" />
+      <CountdownTimer targetDate="2025-07-10T08:00:00+08:00" />
 
       {/* About MCVU Section */}
       <AboutMcvu id="about-mcvu" />
