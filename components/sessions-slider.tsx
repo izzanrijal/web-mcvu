@@ -62,8 +62,8 @@ export const sessions: Workshop[] = [
   {
     shortTitle: "Workshop Keperawatan 1",
     fullTitle: "Implementing core concepts of nursing and radiology in coronary angiography procedures",
-    date: "Jumat, 11 Juli 2025",
-    venue: "Hotel Claro, Makassar",
+    date: "Kamis, 10 Juli 2025",
+    venue: "Pusat Jantung Terpadu RSWS Makassar",
     moderator: "Edy jumadi, SKM.,S.Kep.,Ns., M.Adm.Ke",
     rundown: [
       { time: "07.30 - 08.00", topic: "Registrasi Peserta", speaker: "Panitia" },
