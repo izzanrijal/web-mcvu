@@ -36,7 +36,7 @@ export const sessions: Workshop[] = [
       { time: "08.30-09.15", topic: "Definition, Classification and Clinical Manifestation of Heart Failure in Pediatric", speaker: "Dr. dr. Yulius Patimang,SpA, Sp.JP (K)" },
       { time: "09.15-10.00", topic: "Diagnostic Approach to Pediatric Heart Failure: Emphasizing Adjunctive Examinations", speaker: "Dr.dr.Andi Alief Utama Armyn, M.Kes, SpJP,Subsp.KPPJB(K)" },
       { time: "10.00-10.15", topic: "Coffee Break", speaker: "Panitia" },
-      { time: "10.15-11.00", topic: "Therapeutic Management of Heart Failure in Pediatrics: Focused on Pharmacological Approaches", speaker: "dr. Siska Suridanda Danny, Sp.JP(K), FIHA, FAsACC, FSCAI" },
+      { time: "10.15-11.00", topic: "Therapeutic Management of Heart Failure in Pediatrics: Focused on Pharmacological Approaches", speaker: "dr. Sisca Natalia Siagian, Sp.JP(K), FIHA, FAsACC, FSCAI" },
       { time: "11.00-13.30", topic: "ISHOMA", speaker: "Panitia" },
       { time: "13.30-14.15", topic: "Therapeutic Management of Heart Failure in Pediatrics: Focused on Intervention Strategies", speaker: "dr. Radityo Prakoso, SpJP(K),FIHA,FAPSIC,FAsCC, FESC, FACC, FSCAI" },
       { time: "14.15-14.45", topic: "Clinical Approach to Pediatric with Cardiac Conduction Disturbances", speaker: "Prof. Dr. dr. Muzakkir Amir, Sp.JP(K)" },
