@@ -43,18 +43,43 @@ export default function BookletsDownloadModal({ isOpen, onClose }: BookletsDownl
     }
   }, []);
   
-  // Function to handle download and increment counter
-  const handleDownload = (fileId: string) => {
+  // Function to handle download and increment counter after successful download
+  const handleDownload = (fileId: string, filePath: string) => {
+    // Create a hidden iframe to track when download completes
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+    
+    // Open the file in a new tab
+    window.open(filePath, '_blank');
+    
+    // Increment the counter
     const newCounts = { ...downloadCounts };
     newCounts[fileId] = (newCounts[fileId] || 0) + 1;
     setDownloadCounts(newCounts);
     localStorage.setItem('bookletDownloadCounts', JSON.stringify(newCounts));
+    
+    // Clean up the iframe after a short delay
+    setTimeout(() => {
+      document.body.removeChild(iframe);
+    }, 1000);
+  };
+  
+  // Handle backdrop click to close modal
+  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    // Only close if clicking the backdrop itself, not its children
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
   };
   
   if (!isOpen) return null;
   
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+      onClick={handleBackdropClick}
+    >
       <div className="bg-white rounded-lg shadow-2xl p-0 max-w-2xl w-full mx-auto overflow-hidden">
         {/* Header */}
         <div className="flex justify-between items-center p-4 border-b border-gray-100 bg-gray-50">
@@ -83,11 +108,12 @@ export default function BookletsDownloadModal({ isOpen, onClose }: BookletsDownl
                 key={index}
                 className="group rounded-lg overflow-hidden transition-all duration-200 hover:shadow-md"
               >
-                <a 
-                  href={file.path} 
-                  download
-                  onClick={() => handleDownload(file.id)}
-                  className="flex items-center justify-between p-4 bg-white border border-gray-100 group-hover:border-accent-teal/30 group-hover:bg-accent-teal/5 transition-all"
+                <div 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleDownload(file.id, file.path);
+                  }}
+                  className="flex items-center justify-between p-4 bg-white border border-gray-100 group-hover:border-accent-teal/30 group-hover:bg-accent-teal/5 transition-all cursor-pointer"
                 >
                   <div className="flex items-center">
                     <div className="p-2 bg-accent-teal/10 rounded mr-3 flex-shrink-0">
@@ -107,7 +133,7 @@ export default function BookletsDownloadModal({ isOpen, onClose }: BookletsDownl
                     <Download className="h-5 w-5" />
                     <ChevronRight className="h-4 w-4" />
                   </div>
-                </a>
+                </div>
               </div>
             ))}
           </div>
