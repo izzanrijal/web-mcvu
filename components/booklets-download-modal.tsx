@@ -22,59 +22,11 @@ interface BookletsDownloadModalProps {
 }
 
 export default function BookletsDownloadModal({ isOpen, onClose }: BookletsDownloadModalProps) {
-  const [downloadCounts, setDownloadCounts] = useState<Record<string, number>>({});
-  const [isLoading, setIsLoading] = useState(true);
-
-  // Fetch initial download counts from the API
-  useEffect(() => {
-    if (isOpen) {
-      const fetchCounts = async () => {
-        try {
-          setIsLoading(true);
-          const response = await fetch('/api/downloads');
-          if (!response.ok) {
-            throw new Error('Failed to fetch download counts');
-          }
-          const data = await response.json();
-          setDownloadCounts(data);
-        } catch (error) {
-          console.error(error);
-          // Initialize with zeros on error
-          const initialCounts = bookletFiles.reduce((acc, file) => {
-            acc[file.id] = 0;
-            return acc;
-          }, {} as Record<string, number>);
-          setDownloadCounts(initialCounts);
-        } finally {
-          setIsLoading(false);
-        }
-      };
-      fetchCounts();
-    }
-  }, [isOpen]);
-
-  // Function to handle the download action
-  const handleDownload = async (fileId: string, filePath: string) => {
-    // Optimistically update the UI
-    setDownloadCounts(prevCounts => ({
-      ...prevCounts,
-      [fileId]: (prevCounts[fileId] || 0) + 1,
-    }));
-
+  
+  // Function to handle download
+  const handleDownload = (filePath: string) => {
     // Open the file in a new tab
     window.open(filePath, '_blank');
-
-    // Trigger the API call to increment the count on the backend
-    try {
-      await fetch(`/api/downloads/${fileId}`, { method: 'POST' });
-    } catch (error) {
-      console.error('Failed to update download count:', error);
-      // Revert the optimistic update if the API call fails
-      setDownloadCounts(prevCounts => ({
-        ...prevCounts,
-        [fileId]: (prevCounts[fileId] || 1) - 1,
-      }));
-    }
   };
   
   // Handle backdrop click to close modal
@@ -123,7 +75,7 @@ export default function BookletsDownloadModal({ isOpen, onClose }: BookletsDownl
                 <div 
                   onClick={(e) => {
                     e.preventDefault();
-                    handleDownload(file.id, file.path);
+                    handleDownload(file.path);
                   }}
                   className="flex items-center justify-between p-4 bg-white border border-gray-100 group-hover:border-accent-teal/30 group-hover:bg-accent-teal/5 transition-all cursor-pointer"
                 >
@@ -135,9 +87,6 @@ export default function BookletsDownloadModal({ isOpen, onClose }: BookletsDownl
                       <span className="font-medium text-mocha-dark block">{file.name}</span>
                       <div className="flex items-center gap-2">
                         <span className="text-xs text-gray-500">PDF Document</span>
-                                                <span className="text-xs font-medium py-0.5 px-2 bg-accent-teal/10 text-accent-teal rounded-full">
-                          {isLoading ? '...' : (downloadCounts[file.id] || 0)} downloads
-                        </span>
                       </div>
                     </div>
                   </div>
