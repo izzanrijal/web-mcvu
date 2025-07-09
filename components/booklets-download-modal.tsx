@@ -22,47 +22,59 @@ interface BookletsDownloadModalProps {
 }
 
 export default function BookletsDownloadModal({ isOpen, onClose }: BookletsDownloadModalProps) {
-  // State to track download counts for each booklet
   const [downloadCounts, setDownloadCounts] = useState<Record<string, number>>({});
-  
-  // Load download counts from localStorage when component mounts
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Fetch initial download counts from the API
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const savedCounts = localStorage.getItem('bookletDownloadCounts');
-      if (savedCounts) {
-        setDownloadCounts(JSON.parse(savedCounts));
-      } else {
-        // Initialize with zeros
-        const initialCounts = bookletFiles.reduce((acc, file) => {
-          acc[file.id] = 0;
-          return acc;
-        }, {} as Record<string, number>);
-        setDownloadCounts(initialCounts);
-        localStorage.setItem('bookletDownloadCounts', JSON.stringify(initialCounts));
-      }
+    if (isOpen) {
+      const fetchCounts = async () => {
+        try {
+          setIsLoading(true);
+          const response = await fetch('/api/downloads');
+          if (!response.ok) {
+            throw new Error('Failed to fetch download counts');
+          }
+          const data = await response.json();
+          setDownloadCounts(data);
+        } catch (error) {
+          console.error(error);
+          // Initialize with zeros on error
+          const initialCounts = bookletFiles.reduce((acc, file) => {
+            acc[file.id] = 0;
+            return acc;
+          }, {} as Record<string, number>);
+          setDownloadCounts(initialCounts);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+      fetchCounts();
     }
-  }, []);
-  
-  // Function to handle download and increment counter after successful download
-  const handleDownload = (fileId: string, filePath: string) => {
-    // Create a hidden iframe to track when download completes
-    const iframe = document.createElement('iframe');
-    iframe.style.display = 'none';
-    document.body.appendChild(iframe);
-    
+  }, [isOpen]);
+
+  // Function to handle the download action
+  const handleDownload = async (fileId: string, filePath: string) => {
+    // Optimistically update the UI
+    setDownloadCounts(prevCounts => ({
+      ...prevCounts,
+      [fileId]: (prevCounts[fileId] || 0) + 1,
+    }));
+
     // Open the file in a new tab
     window.open(filePath, '_blank');
-    
-    // Increment the counter
-    const newCounts = { ...downloadCounts };
-    newCounts[fileId] = (newCounts[fileId] || 0) + 1;
-    setDownloadCounts(newCounts);
-    localStorage.setItem('bookletDownloadCounts', JSON.stringify(newCounts));
-    
-    // Clean up the iframe after a short delay
-    setTimeout(() => {
-      document.body.removeChild(iframe);
-    }, 1000);
+
+    // Trigger the API call to increment the count on the backend
+    try {
+      await fetch(`/api/downloads/${fileId}`, { method: 'POST' });
+    } catch (error) {
+      console.error('Failed to update download count:', error);
+      // Revert the optimistic update if the API call fails
+      setDownloadCounts(prevCounts => ({
+        ...prevCounts,
+        [fileId]: (prevCounts[fileId] || 1) - 1,
+      }));
+    }
   };
   
   // Handle backdrop click to close modal
@@ -123,8 +135,8 @@ export default function BookletsDownloadModal({ isOpen, onClose }: BookletsDownl
                       <span className="font-medium text-mocha-dark block">{file.name}</span>
                       <div className="flex items-center gap-2">
                         <span className="text-xs text-gray-500">PDF Document</span>
-                        <span className="text-xs font-medium py-0.5 px-2 bg-accent-teal/10 text-accent-teal rounded-full">
-                          {downloadCounts[file.id] || 0} downloads
+                                                <span className="text-xs font-medium py-0.5 px-2 bg-accent-teal/10 text-accent-teal rounded-full">
+                          {isLoading ? '...' : (downloadCounts[file.id] || 0)} downloads
                         </span>
                       </div>
                     </div>
