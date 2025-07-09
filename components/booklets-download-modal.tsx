@@ -1,18 +1,19 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Download, FileText, ChevronRight } from 'lucide-react';
 
 interface BookletFile {
   name: string;
   path: string;
+  id: string;
 }
 
 const bookletFiles: BookletFile[] = [
-  { name: "Booklet Abstract MCVU XXIII 2025", path: "/booklets/BOOKLET ABSTRACT MCVU XXIII 2025.pdf" },
-  { name: "Final Announcement MCVU 2025", path: "/booklets/Final Announcement MCVU 2025.pdf" },
-  { name: "MCVU XXIII 2025 Daily Program Board", path: "/booklets/MCVU XXIII 2025 DAILY PROGRAM BOARD.pdf" },
-  { name: "Panduan Plataran Sehat MCVU 2025", path: "/booklets/PANDUAN PLATARAN SEHAT MCVU 2025.pdf" }
+  { name: "Booklet Abstract MCVU XXIII 2025", path: "/booklets/BOOKLET ABSTRACT MCVU XXIII 2025.pdf", id: "abstract" },
+  { name: "Final Announcement MCVU 2025", path: "/booklets/Final Announcement MCVU 2025.pdf", id: "announcement" },
+  { name: "MCVU XXIII 2025 Daily Program Board", path: "/booklets/MCVU XXIII 2025 DAILY PROGRAM BOARD.pdf", id: "program" },
+  { name: "Panduan Plataran Sehat MCVU 2025", path: "/booklets/PANDUAN PLATARAN SEHAT MCVU 2025.pdf", id: "panduan" }
 ];
 
 interface BookletsDownloadModalProps {
@@ -21,6 +22,35 @@ interface BookletsDownloadModalProps {
 }
 
 export default function BookletsDownloadModal({ isOpen, onClose }: BookletsDownloadModalProps) {
+  // State to track download counts for each booklet
+  const [downloadCounts, setDownloadCounts] = useState<Record<string, number>>({});
+  
+  // Load download counts from localStorage when component mounts
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const savedCounts = localStorage.getItem('bookletDownloadCounts');
+      if (savedCounts) {
+        setDownloadCounts(JSON.parse(savedCounts));
+      } else {
+        // Initialize with zeros
+        const initialCounts = bookletFiles.reduce((acc, file) => {
+          acc[file.id] = 0;
+          return acc;
+        }, {} as Record<string, number>);
+        setDownloadCounts(initialCounts);
+        localStorage.setItem('bookletDownloadCounts', JSON.stringify(initialCounts));
+      }
+    }
+  }, []);
+  
+  // Function to handle download and increment counter
+  const handleDownload = (fileId: string) => {
+    const newCounts = { ...downloadCounts };
+    newCounts[fileId] = (newCounts[fileId] || 0) + 1;
+    setDownloadCounts(newCounts);
+    localStorage.setItem('bookletDownloadCounts', JSON.stringify(newCounts));
+  };
+  
   if (!isOpen) return null;
   
   return (
@@ -56,6 +86,7 @@ export default function BookletsDownloadModal({ isOpen, onClose }: BookletsDownl
                 <a 
                   href={file.path} 
                   download
+                  onClick={() => handleDownload(file.id)}
                   className="flex items-center justify-between p-4 bg-white border border-gray-100 group-hover:border-accent-teal/30 group-hover:bg-accent-teal/5 transition-all"
                 >
                   <div className="flex items-center">
@@ -64,7 +95,12 @@ export default function BookletsDownloadModal({ isOpen, onClose }: BookletsDownl
                     </div>
                     <div>
                       <span className="font-medium text-mocha-dark block">{file.name}</span>
-                      <span className="text-xs text-gray-500">PDF Document</span>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-gray-500">PDF Document</span>
+                        <span className="text-xs font-medium py-0.5 px-2 bg-accent-teal/10 text-accent-teal rounded-full">
+                          {downloadCounts[file.id] || 0} downloads
+                        </span>
+                      </div>
                     </div>
                   </div>
                   <div className="flex items-center gap-2 text-accent-teal opacity-0 group-hover:opacity-100 transition-opacity">
