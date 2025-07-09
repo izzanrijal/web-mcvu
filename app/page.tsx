@@ -4,6 +4,7 @@ import { useState } from "react" // Added useState
 import Image from "next/image"
 import Link from "next/link"
 import { ChevronRight, MapPin, Calendar, Clock } from "lucide-react"
+import BookletsDownloadModal from "@/components/booklets-download-modal"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import CountdownTimer from "@/components/countdown-timer"
@@ -24,7 +25,7 @@ import VenueMap from "@/components/venue-map"
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedWorkshopForModal, setSelectedWorkshopForModal] = useState<Workshop | null>(null);
-  const [isSubmissionModalOpen, setIsSubmissionModalOpen] = useState(false);
+  const [isBookletsModalOpen, setIsBookletsModalOpen] = useState(false);
 
   const handleOpenWorkshopModal = (workshop: Workshop | null) => {
     setSelectedWorkshopForModal(workshop);
@@ -117,10 +118,10 @@ export default function Home() {
               </Link>
               <button
                 type="button"
-                onClick={() => setIsSubmissionModalOpen(true)}
+                onClick={() => setIsBookletsModalOpen(true)}
                 className="inline-block bg-transparent hover:bg-mocha-dark hover:text-cream text-mocha-dark font-mono uppercase text-base md:text-lg font-bold py-3 px-6 rounded-md border-2 border-mocha-dark transition-colors text-center"
               >
-                Abstract Submission
+                Booklets Download
               </button>
             </div>
           </div>
@@ -222,15 +223,10 @@ export default function Home() {
         allWorkshops={allWorkshopData} // Pass all workshops
         onSelectWorkshop={handleOpenWorkshopModal} // Pass handler to update selected workshop
       />
-      {isSubmissionModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-          <div className="bg-white rounded-lg shadow-xl p-6 max-w-sm mx-auto text-center">
-            <h3 className="text-xl font-bold mb-4">Submissions Closed</h3>
-            <p className="mb-6">Abstract submissions are now closed. Please join us next year!</p>
-            <button type="button" onClick={() => setIsSubmissionModalOpen(false)} className="bg-accent-teal text-white py-2 px-4 rounded-md">Close</button>
-          </div>
-        </div>
-      )}
+      <BookletsDownloadModal 
+        isOpen={isBookletsModalOpen} 
+        onClose={() => setIsBookletsModalOpen(false)} 
+      />
       <Footer />
     </div>
   )
